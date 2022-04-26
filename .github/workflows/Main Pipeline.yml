@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-name: PR Build
+name: Build and Deploy
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -26,6 +26,10 @@ jobs:
         run: ./DevOps/Build.ps1 -deploy -publishDir "./publish"
         shell: pwsh
         env:
+          AZ_CLIENT_ID: ${{ secrets.AZ_CLIENT_ID }}
+          AZ_CLIENT_SECRET: ${{ secrets.AZ_CLIENT_SECRET }}
+          AZ_TENANT_ID: ${{ secrets.AZ_TENANT_ID }}
+          AZ_SUBSCRIPTION_ID: ${{ secrets.AZ_SUBSCRIPTION_ID }}
           APP_SERVICE_PLAN: death-to-yaml-asp
           RESOURCE_GROUP: death-to-yaml
           WEB_APP_NAME: death-to-yaml-dev
