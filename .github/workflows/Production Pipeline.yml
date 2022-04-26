@@ -1,5 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-name: Build and Deploy
+name: Production Deployment
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -12,7 +12,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build_and_deploy:
-    environment: dev
+    environment: prod
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -32,4 +32,4 @@ jobs:
           AZ_SUBSCRIPTION_ID: ${{ secrets.AZ_SUBSCRIPTION_ID }}
           APP_SERVICE_PLAN: death-to-yaml-asp
           RESOURCE_GROUP: death-to-yaml
-          WEB_APP_NAME: death-to-yaml-dev
+          WEB_APP_NAME: death-to-yaml-prod
