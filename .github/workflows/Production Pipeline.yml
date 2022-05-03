@@ -1,8 +1,9 @@
-name: Build and Deploy
+name: Build and Deploy Prod
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build and Deploy Dev"]
+    types:
+      - completed
 jobs:
   build:
     name: "Build the Application"
@@ -24,7 +25,7 @@ jobs:
     name: "Deploy the Application to Dev"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/upload-artifact@v2
+      - uses: actions/download-artifact@v2
         with:
           name: publish.zip
 
