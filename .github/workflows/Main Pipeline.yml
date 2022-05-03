@@ -18,6 +18,11 @@ jobs:
         with:
           name: publish.zip
           path: ./publish.zip
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Deploy.ps1
+          path: ./DevOps/Deploy.ps1
   deploy:
     environment: dev
     needs: build
@@ -28,8 +33,12 @@ jobs:
         with:
           name: publish.zip
 
+      - uses: actions/download-artifact@v2
+        with:
+          name: Deploy.ps1
+
       - name: Deploy
-        run: ./DevOps/Deploy.ps1 -package "${{ env.GITHUB_WORKSPACE }}$publish.zip"
+        run: ./Deploy.ps1 -package "./$publish.zip"
         env:
           AZ_CLIENT_ID: ${{ secrets.AZ_CLIENT_ID }}
           AZ_CLIENT_SECRET: ${{ secrets.AZ_CLIENT_SECRET }}
