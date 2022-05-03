@@ -20,6 +20,7 @@ jobs:
           path: ./publish.zip
   deploy:
     environment: prod
+    needs: build
     name: "Deploy the Application to Dev"
     runs-on: ubuntu-latest
     steps:
