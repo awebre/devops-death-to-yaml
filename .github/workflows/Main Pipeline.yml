@@ -29,7 +29,7 @@ jobs:
           name: publish.zip
 
       - name: Deploy
-        run: ./DevOps/Deploy.ps1 -package "${{ GITHUB_WORKSPACE }}$publish.zip"
+        run: ./DevOps/Deploy.ps1 -package "${{ env.GITHUB_WORKSPACE }}$publish.zip"
         env:
           AZ_CLIENT_ID: ${{ secrets.AZ_CLIENT_ID }}
           AZ_CLIENT_SECRET: ${{ secrets.AZ_CLIENT_SECRET }}
