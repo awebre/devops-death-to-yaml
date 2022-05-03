@@ -27,7 +27,7 @@ jobs:
   deploy:
     environment: prod
     needs: build
-    name: "Deploy the Application to Dev"
+    name: "Deploy the Application to Prod"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
@@ -48,4 +48,4 @@ jobs:
           AZ_SUBSCRIPTION_ID: ${{ secrets.AZ_SUBSCRIPTION_ID }}
           APP_SERVICE_PLAN: death-to-yaml-asp
           RESOURCE_GROUP: death-to-yaml
-          WEB_APP_NAME: death-to-yaml-dev
+          WEB_APP_NAME: death-to-yaml-prod
