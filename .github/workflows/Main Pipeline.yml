@@ -38,7 +38,7 @@ jobs:
           name: Deploy.ps1
 
       - name: Deploy
-        run: ${{ env.GITHUB_WORKSPACE }}/Deploy.ps1 -package "${{ env.GITHUB_WORKSPACE }}/publish.zip"
+        run: ./Deploy.ps1 -package "./publish.zip"
         shell: pwsh
         env:
           AZ_CLIENT_ID: ${{ secrets.AZ_CLIENT_ID }}
